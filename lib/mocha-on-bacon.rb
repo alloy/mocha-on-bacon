@@ -13,11 +13,11 @@ module Bacon
     
     alias_method :it_before_mocha, :it
     
-    def it(description)
+    def it(description, &block)
       it_before_mocha(description) do
         begin
           mocha_setup
-          yield
+          block.call
           mocha_verify(MochaRequirementsCounter)
         rescue Mocha::ExpectationError => e
           raise Error.new(:failed, e.message)
