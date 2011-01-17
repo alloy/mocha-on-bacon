@@ -1,27 +1,58 @@
 require "rubygems" rescue LoadError
-require "bacon"
-require "mocha"
-
 require File.expand_path('../../lib/mocha-on-bacon', __FILE__)
 
 class Should
   alias_method :have, :be
 end
 
+class MochaTestContext < Bacon::Context
+  def initialize(name)
+    @name = name
+    @before, @after = [], []
+    @specifications = []
+    @current_specification_index = 0
+  end
+
+  def it(description, &block)
+    super
+    @specifications.pop
+  end
+
+  def specification_did_finish(spec)
+    # We don't care in this case
+  end
+end
+
 module MochaBaconHelper
   module SilenceOutput
     attr_accessor :silence
-    
-    def handle_specification(name)
+
+    def handle_specification_begin(name)
       puts name unless silence
-      yield
+    end
+
+    def handle_specification_end
       puts unless silence
     end
-    
-    def handle_requirement(description)
+
+    def handle_specification(name)
+      handle_specification_begin(name)
+      yield
+      handle_specification_end
+    end
+
+    def handle_requirement_begin(description)
       print "- #{description}" unless silence
-      error = yield
+    end
+
+    def handle_requirement_end(error)
       puts(error.empty? ? "" : " [#{error}]") unless silence
+    end
+
+    def handle_requirement(description)
+      handle_requirement_begin(description)
+      error = yield
+      handle_requirement_end(error)
     end
     
     def handle_summary
@@ -41,7 +72,7 @@ module MochaBaconHelper
   end
   
   def mocha_context
-    @mocha_context ||= Bacon::Context.new("Mocha test context")
+    @mocha_context ||= MochaTestContext.new("Mocha test context") {}
   end
   
   def run_example(proc)
@@ -51,7 +82,8 @@ module MochaBaconHelper
     error_log_before = error_log.dup
     Bacon.silence = true
     
-    mocha_context.it("Mocha example `#{@example_counter}'", &proc)
+    spec = mocha_context.it("Mocha example `#{@example_counter}'", &proc)
+    spec.run if spec.respond_to?(:run) # MacBacon
     [{ :failed => counter[:failed] - counter_before[:failed], :errors => counter_before[:errors] - counter_before[:errors] }, error_log.dup]
   ensure
     counter.replace(counter_before)
