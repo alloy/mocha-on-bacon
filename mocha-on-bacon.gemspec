@@ -5,26 +5,28 @@
 
 Gem::Specification.new do |s|
   s.name = %q{mocha-on-bacon}
-  s.version = "0.1.1"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Eloy Duran"]
-  s.date = %q{2010-01-25}
+  s.date = %q{2011-01-17}
   s.description = %q{A Mocha adapter for Bacon, because it's yummy!}
   s.email = %q{eloy.de.enige@gmail.com}
+  s.extra_rdoc_files = [
+    "LICENSE",
+     "README.md"
+  ]
   s.files = [
-    ".gitignore",
-     "Rakefile",
-     "VERSION",
+    "LICENSE",
+     "README.md",
      "lib/mocha-on-bacon.rb",
-     "mocha-on-bacon.gemspec",
      "spec/mocha-on-bacon_spec.rb",
      "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/alloy/mocha-on-bacon}
+  s.homepage = %q{https://github.com/alloy/mocha-on-bacon}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{A Mocha adapter for Bacon}
   s.test_files = [
     "spec/mocha-on-bacon_spec.rb",
@@ -35,16 +37,13 @@ Gem::Specification.new do |s|
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<mocha>, [">= 0.9.8"])
-      s.add_runtime_dependency(%q<bacon>, [">= 1.1.0"])
     else
       s.add_dependency(%q<mocha>, [">= 0.9.8"])
-      s.add_dependency(%q<bacon>, [">= 1.1.0"])
     end
   else
     s.add_dependency(%q<mocha>, [">= 0.9.8"])
-    s.add_dependency(%q<bacon>, [">= 1.1.0"])
   end
 end
 

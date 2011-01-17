@@ -25,11 +25,14 @@ begin
     gemspec.summary = "A Mocha adapter for Bacon"
     gemspec.description = "A Mocha adapter for Bacon, because it's yummy!"
     gemspec.email = "eloy.de.enige@gmail.com"
-    gemspec.homepage = "http://github.com/alloy/mocha-on-bacon"
+    gemspec.homepage = "https://github.com/alloy/mocha-on-bacon"
     gemspec.authors = ["Eloy Duran"]
     
     gemspec.add_runtime_dependency("mocha", [">= 0.9.8"])
-    gemspec.add_runtime_dependency("bacon", [">= 1.1.0"])
+    # This is hard to do if the user wants to only use it with MacBacon...
+    #gemspec.add_runtime_dependency("bacon", [">= 1.1.0"])
+    
+    gemspec.files = FileList["{lib,spec}/**/*.rb", "LICENSE", "README.md"]
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
