@@ -64,7 +64,7 @@ For more information see the Mocha and Bacon websites.
 License
 -------
 
-Copyright (C) 2011, Eloy Durán <eloy.de.enige@gmail.com>
+Copyright (C) 2011-2012, Eloy Durán <eloy.de.enige@gmail.com>
 
 Mocha-on-Bacon is available under the MIT license. See the LICENSE file or
 http://www.opensource.org/licenses/mit-license.php
