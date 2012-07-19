@@ -1,4 +1,4 @@
-require "mocha"
+require "mocha_standalone"
 
 module Bacon
   module MochaRequirementsCounter
