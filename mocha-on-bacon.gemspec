@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'mocha-on-bacon'
-  s.version     = '0.2.1'
+  s.version     = '0.2.2'
   s.date        = Date.today
   s.homepage    = 'https://github.com/alloy/mocha-on-bacon'
 
@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = %w{ LICENSE README.md }
   s.rdoc_options     = %w{ --charset=UTF-8 }
 
-  s.add_runtime_dependency('mocha', '>= 0.9.8')
+  s.add_runtime_dependency('mocha', '>= 0.13.0')
 
   s.rubygems_version = '1.3.7'
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
