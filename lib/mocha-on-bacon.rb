@@ -29,7 +29,7 @@ module Bacon
           begin
             yield
           rescue Mocha::ExpectationError => e
-            raise Error.new(:failed, e.message)
+            raise Error.new(:failed, e.message).tap {|ne| ne.set_backtrace(e.backtrace) }
           end
         end
       end
@@ -57,7 +57,7 @@ module Bacon
             block.call
             mocha_verify(MochaRequirementsCounter)
           rescue Mocha::ExpectationError => e
-            raise Error.new(:failed, e.message)
+            raise Error.new(:failed, e.message).tap {|ne| ne.set_backtrace(e.backtrace) }
           ensure
             mocha_teardown
           end
