@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'mocha-on-bacon'
-  s.version     = '0.2.2'
+  s.version     = '0.2.3'
   s.date        = Date.today
   s.homepage    = 'https://github.com/alloy/mocha-on-bacon'
 
